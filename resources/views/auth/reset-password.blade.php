@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Choose a new password · Project SPARK</title><link rel="stylesheet" href="{{ asset('admin.css') }}"></head>
+<body class="auth-page"><div class="auth-orb orb-b"></div><main class="auth-card"><a class="auth-brand" href="{{ route('home') }}"><span class="brand-mark"><span></span><span></span><span></span></span><span><b>PROJECT SPARK</b><small>Admin portal</small></span></a>
+<div class="auth-copy"><span class="eyebrow">New password</span><h1>Make it memorable. Make it secure.</h1><p>Choose a strong password with at least eight characters.</p></div>
+@if($errors->any())<div class="error-box">{{ $errors->first() }}</div>@endif
+<form method="post" action="{{ route('admin.password.update') }}" class="auth-form">@csrf<input type="hidden" name="token" value="{{ $token }}"><label>Email address<input type="email" name="email" value="{{ $email }}" required></label><label>New password<input type="password" name="password" required></label><label>Confirm password<input type="password" name="password_confirmation" required></label><button class="admin-button" type="submit">Update password <span>↗</span></button></form><a class="back-link" href="{{ route('admin.login') }}">← Back to sign in</a></main></body></html>
