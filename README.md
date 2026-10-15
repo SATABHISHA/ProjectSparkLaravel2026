@@ -35,3 +35,15 @@ The public page is API-backed and the admin studio edits the same database recor
 ## Content model
 
 Content is stored in MySQL across `site_settings`, `content_sections`, `focus_areas`, `partners`, `contact_submissions`, `users`, and `api_tokens`. The supplied logo is available at `public/images/logo.jpeg`.
+
+## Hostinger deployment
+
+Production secrets are intentionally not stored in `.env.example` or in Git. Configure the real production `.env` once on the Hostinger server, then run:
+
+```powershell
+.\deploy-hostinger.ps1
+```
+
+The deployment archive excludes `.env`, `vendor`, `node_modules`, and logs. The script updates application files, installs Composer dependencies, runs only pending Laravel migrations, clears caches, and preserves existing database rows. It does not run `migrate:fresh`, seed destructively, or replace the production database.
+
+The first deployment also requires a one-time import of the local database into the Hostinger database. Take a server-side backup first if the destination database already contains data.
